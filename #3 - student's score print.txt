@@ -1,0 +1,28 @@
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+#include <string.h>
+
+void main()
+{
+	//학생들 명단과 점수
+	char s[7][10] = { "최지윤", "지예원", "민주현", "원샛별", "박지홍", "진윤정", "진선미" };
+	int score[7] = { 90,85,90,75,95,100,80 };
+	char sname[10]; //이름을 받을 문자열
+	int i; //필요한 변수 선언
+
+	//이름 입력받기
+	printf("학생 이름을 입력하시오: ");
+	gets(sname);
+
+
+	//학생을 특정지은 후 점수 출력
+	for (i = 0; i < 7; i++)
+	{
+		if (strcmp(s[i], sname) == 0) 
+		{
+			printf("%s 학생의 점수 = %d", sname, score[i]);
+		}
+	}
+
+	return 0;
+}

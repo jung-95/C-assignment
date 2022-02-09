@@ -1,0 +1,134 @@
+#define N 7 // 학급 학생 수 
+#include <stdio.h>
+#include <string.h>
+
+//학급 성적 정보 
+char s[N][10] = { "은지영", "조남희", "이예진", "신예빈", "김정선", "박민정", "최다영" };
+int midterm[N] = { 90, 85, 80, 75, 95, 100, 80 }; // 중간시험
+int final[N] = { 80, 90, 95, 100, 80, 75, 90 }; // 기말시험
+
+
+
+//학급 중간/기말시험 평균 계산하여 출력하는 함수
+void computeClassAvg()
+{
+	//필요한 변수들 선언
+	int i, sum1, sum2;
+	double average1, average2;
+    
+	//학급 중간시험 평균
+	for (i = 0, sum1=0; i < N; i++)
+	{
+		sum1 += midterm[i];
+	}
+	average1 = (double)sum1 / (double)N;
+
+	//학급 기말시험 평균
+	for (i = 0, sum2 = 0; i < N; i++)
+	{
+		sum2 += final[i];
+	}
+	average2 = (double)sum2 / (double)N;
+
+	//점수 출력
+	printf("학급 중간시험 평균 = %.2f\n", average1);
+	printf("학급 기말시험 평균 = %.2f\n\n", average2);
+
+}
+
+
+
+//주어진 학생의 중간/기말시험 점수와 평균 출력하는 함수
+void computeStudentAvg(char sname[])
+{
+	//변수 선언
+	int i;
+	double average;
+
+	//주어진 학생 찾기
+	for (i = 0; i < N; i++)
+	{
+		if (strcmp(s[i], sname) == 0)
+		{
+			//학생의 중간/기말 평균 계산, 점수와 평균 출력
+			average = ((double)midterm[i] + (double)final[i]) / 2;
+			printf("중간 = %d, 기말 = %d, 평균 = %.2f\n\n", midterm[i], final[i], average);
+
+		}
+	}
+}
+
+
+
+// 주어진 학생이 학급에 있는가 확인하여
+// 그 결과를 호출한 곳으로 반환해 주는 함수
+int findStudent(char sname[])
+{
+	// 변수 선언
+	int i, k;
+
+	//존재 여부 판단
+	for (i = 0; i < N; i++)
+	{
+		if (strcmp(s[i], sname) == 0)
+		{
+			k = 0;
+			break;
+		}
+
+		else
+		{
+			k = 1;
+		}
+
+
+	}
+
+	return k;
+}
+
+
+
+void main()
+{
+	int result;
+	char sname[10]; //입력 학생 이름 저장하는 곳 
+
+
+	computeClassAvg(); //중간, 기말시험 평균 계산하여 출력
+
+
+	while (1) //무한 반복
+	{
+		printf("학생 이름을 입력하시오: ");
+		gets(sname); //학생 이름 받기
+
+
+		//학생 이름이 "끝" 이면 인사하고 프로그램 종료
+		if (strcmp(sname,"끝") == 0)
+		{
+			printf("다음에 만나요!");
+			break;
+		}
+
+
+		//학생이 학급에 있는지 판단
+		result = findStudent(sname);
+
+
+		//학급에 없으면 없다고 출력
+		if (result != 0)
+		{
+			printf("%s 학생은 학급에 없습니다.\n\n", sname);
+		}
+
+
+		//있는 경우 학생의 중간, 기말시험 점수와 평균점수 출력
+		else
+		{
+			computeStudentAvg(sname);
+		}
+	}
+
+	return 0;
+}

@@ -1,0 +1,34 @@
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+#include <string.h>
+
+void main()
+{
+	//학생 명단
+	char s[7][10] = { "한승미", "김주영", "원홍빈", "도지희", "이하선", "선지은", "조하정" };
+
+	//필요한 문자열과 변수 선언
+	char str1[10];
+	char str2[10];
+	int i;
+
+	//문자열끼리의 순서 바꾸기, 학생 이름 정렬
+	strcpy(str1, s[0]);
+	strcpy(s[0], s[1]);
+	strcpy(s[1], s[3]);
+	strcpy(str2, s[2]);
+	strcpy(s[2], s[5]);
+	strcpy(s[3], str2);
+	strcpy(s[5], s[6]);
+	strcpy(s[6], str1);
+
+	
+	//정렬된 문자열 배열 출력
+	for (i = 0; i < 7; i++)
+	{
+		printf("%s\n", s[i]);
+	}
+
+	return 0;
+
+}

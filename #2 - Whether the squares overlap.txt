@@ -1,0 +1,32 @@
+//(문제1) 두 사각형이 겹치는가?
+
+#include <stdio.h>
+int main(void)
+{
+	//사각형 R1, R2의 좌표 정하기
+	int x1, x2, x3, x4, y1, y2, y3, y4;
+	printf("사각형1의 좌표 입력 : ");
+	scanf_s("%d %d %d %d", &x1, &y1, &x2, &y2);
+	printf("사각형2의 좌표 입력 : ");
+	scanf_s("%d %d %d %d", &x3, &y3, &x4, &y4);
+
+
+	//겹치지 않는 경우 
+	if (x3 >= x2 || x4 <= x1)
+	{
+		printf("겹치지 않는다.");
+	}
+
+	else if (y4 <= y1 || y3 >= y2)
+	{
+		printf("겹치지 않는다.");
+	}
+
+	//그 예외 -> 겹치는 경우
+	else
+	{
+		printf("겹친다.");
+	}
+
+	return 0;
+}

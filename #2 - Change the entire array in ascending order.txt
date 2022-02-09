@@ -1,0 +1,53 @@
+//정렬 프로그램
+
+#include <stdio.h>
+
+//배열 데이터, 변수 선언
+int A[10] = { 5,8,2,6,1,3,4,10,9,7 };
+int min, temp;
+
+//최솟값을 찾고, A[b]와 자리를 바꾸는 함수
+void findMin(int b, int e)
+{
+	int i;
+	min = b;
+	for (i = b; i <= e; i++)
+	{
+		if (A[min] > A[i])
+		{
+			min = i;
+		}
+	}
+
+	temp = A[b];
+	A[b] = A[min];
+	A[min] = temp;
+
+}
+
+//배열을 나열해 표시하는 함수
+void printArray(int n)
+{
+	int i;
+	for (i = 0; i <= n - 1; i++)
+	{
+		printf("%d ", A[i]);
+	}
+
+	printf("\n");
+}
+
+//최솟값을 앞으로 보내는 findMin 함수와 배열을 표시하는 printArray 함수를 활용, A[10] 배열을 오름차순으로 변환
+int main(void)
+{
+	int i;
+	int n = 10;
+	for (i = 0; i < 10; i++)
+	{
+		printf("[%d] : ", i);
+		printArray(n);
+		findMin(i, n - 1);
+	}
+
+	return 0;
+}
